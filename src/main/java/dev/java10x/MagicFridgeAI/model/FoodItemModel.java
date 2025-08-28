@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class FoodItem {
+public class FoodItemModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
