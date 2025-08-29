@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/food")
@@ -27,6 +28,12 @@ public class FoodItemController {
     @GetMapping("/categorias")
     public ResponseEntity<List<String>> listarCategorias() {
         return ResponseEntity.ok(foodItemService.ListarCategorias());
+    }
+
+    @GetMapping("Listar")
+    public ResponseEntity<List<FoodItemDTO>> listarFood(){
+        List<FoodItemDTO> foodItemDTOS = foodItemService.ListarItens();
+        return ResponseEntity.ok(foodItemDTOS);
     }
 
 }

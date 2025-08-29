@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FoodItemService {
@@ -32,6 +33,13 @@ public class FoodItemService {
                 .map(Enum :: name)
                 .toList();
 
+    }
+
+    public List<FoodItemDTO> ListarItens(){
+        List<FoodItemModel> itensModel = foodItemRepository.findAll();
+        return itensModel.stream()
+                .map(foodItemMapper :: map)
+                .collect(Collectors.toList());
     }
 
 
