@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/food")
 public class FoodItemController {
@@ -23,8 +25,8 @@ public class FoodItemController {
     }
 
     @GetMapping("/categorias")
-    public FoodCategory[] listarCategorias() {
-        return FoodCategory.values();
+    public ResponseEntity<List<String>> listarCategorias() {
+        return ResponseEntity.ok(foodItemService.ListarCategorias());
     }
 
 }
