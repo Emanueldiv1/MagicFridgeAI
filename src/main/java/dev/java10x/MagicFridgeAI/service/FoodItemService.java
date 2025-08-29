@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,6 +41,11 @@ public class FoodItemService {
         return itensModel.stream()
                 .map(foodItemMapper :: map)
                 .collect(Collectors.toList());
+    }
+
+    public FoodItemDTO listarItenId(Long id){
+        Optional<FoodItemModel> foodId = foodItemRepository.findById(id);
+        return foodId.map(foodItemMapper :: map).orElse(null);
     }
 
 

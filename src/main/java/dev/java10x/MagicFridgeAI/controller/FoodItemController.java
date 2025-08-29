@@ -30,10 +30,22 @@ public class FoodItemController {
         return ResponseEntity.ok(foodItemService.ListarCategorias());
     }
 
-    @GetMapping("Listar")
+    @GetMapping("/listar")
     public ResponseEntity<List<FoodItemDTO>> listarFood(){
         List<FoodItemDTO> foodItemDTOS = foodItemService.ListarItens();
         return ResponseEntity.ok(foodItemDTOS);
+    }
+
+    @GetMapping("/itens/{id}")
+    public ResponseEntity<?> listarFoodId(@PathVariable Long id){
+        FoodItemDTO foodId = foodItemService.listarItenId(id);
+        if (foodId != null){
+            return ResponseEntity.ok(foodId.getNome());
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Esse ID: " + id + " não existe");
+        }
     }
 
 }
