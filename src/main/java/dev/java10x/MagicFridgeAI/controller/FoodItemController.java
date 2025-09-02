@@ -6,6 +6,7 @@ import dev.java10x.MagicFridgeAI.enums.FoodCategory;
 import dev.java10x.MagicFridgeAI.service.FoodItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,5 +48,24 @@ public class FoodItemController {
                     .body("Esse ID: " + id + " não existe");
         }
     }
+
+
+    @PutMapping("editar/{id}")
+    public ResponseEntity<?> editarFood(@PathVariable long id, @RequestBody FoodItemDTO foodItemDTO){
+        FoodItemDTO foodItemUp = foodItemService.listarItenId(id);
+        if (foodItemUp != null){
+            FoodItemDTO foodUpdate = foodItemService.foodItemUpdate(id, foodItemDTO);
+            return ResponseEntity.ok(foodUpdate);
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Esse item não existe");
+        }
+    }
+
+    
+
+//    editar/id
+//    deletar/id
+
 
 }
