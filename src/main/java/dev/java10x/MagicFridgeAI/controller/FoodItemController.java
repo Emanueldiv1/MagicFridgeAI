@@ -62,10 +62,11 @@ public class FoodItemController {
         }
     }
 
-    
-
-//    editar/id
-//    deletar/id
-
+    @DeleteMapping("deletar/{id}")
+    public ResponseEntity<String> DeleteFood(@PathVariable Long id){
+       boolean delete = foodItemService.foodItemDelete(id);
+       return delete ? ResponseEntity.ok("Item deletado com sucesso") : ResponseEntity.status(
+               HttpStatus.NOT_FOUND).body("Item não encontrado");
+    }
 
 }
