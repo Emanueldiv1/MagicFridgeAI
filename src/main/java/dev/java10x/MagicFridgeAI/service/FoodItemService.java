@@ -56,6 +56,15 @@ public class FoodItemService {
         return null;
     }
 
+    public boolean foodItemDelete(long id){
+        Optional<FoodItemModel> foodItemExists = foodItemRepository.findById(id);
+        if (foodItemExists.isPresent()){
+            foodItemRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
 
 
 
