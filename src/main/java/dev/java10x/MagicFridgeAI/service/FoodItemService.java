@@ -8,10 +8,7 @@ import dev.java10x.MagicFridgeAI.model.FoodItemModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,6 +43,17 @@ public class FoodItemService {
     public FoodItemDTO listarItenId(Long id){
         Optional<FoodItemModel> foodId = foodItemRepository.findById(id);
         return foodId.map(foodItemMapper :: map).orElse(null);
+    }
+
+    public FoodItemDTO foodItemUpdate(long id, FoodItemDTO foodItemDTO){
+        Optional<FoodItemModel> foodExists = foodItemRepository.findById(id);
+        if (foodExists.isPresent()){
+            FoodItemModel foodItemAtualizar = foodItemMapper.map(foodItemDTO);
+            foodItemAtualizar.setId(id);
+            FoodItemModel foodItemSave = foodItemRepository.save(foodItemAtualizar);
+            return  foodItemMapper.map(foodItemSave);
+        }
+        return null;
     }
 
 
