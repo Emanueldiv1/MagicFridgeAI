@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum FoodCategory {
     VEGETAL,
-    CARNES,
-    LATICINIOS,
-    BEBIDAS,
-    FRUTAS,
+    CARNE,
+    LATICINIO,
+    BEBIDA,
+    FRUTA,
     OUTROS;
 
     @JsonCreator
