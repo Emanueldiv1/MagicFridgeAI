@@ -49,7 +49,6 @@ public class FoodItemController {
         }
     }
 
-
     @PutMapping("editar/{id}")
     public ResponseEntity<?> editarFood(@PathVariable long id, @RequestBody FoodItemDTO foodItemDTO){
         FoodItemDTO foodItemUp = foodItemService.listarItenId(id);
