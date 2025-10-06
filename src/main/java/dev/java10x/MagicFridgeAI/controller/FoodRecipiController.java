@@ -21,7 +21,7 @@ public class FoodRecipiController {
     @Autowired
     private FoodItemService foodItemService;
 
-    @GetMapping("generate")
+    @GetMapping("/generate")
     public Mono<ResponseEntity<String>> generatRecipe(){
         List<FoodItemDTO> foodItem = foodItemService.ListarItens();
         return geminiService.generatRecipe(foodItem)
