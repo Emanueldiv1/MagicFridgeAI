@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Magic Fridge</title>
+    <link rel="stylesheet" th:href="@{/css/listarAlimentos.css}">
+
+</head>
+<body>
+<header>
+    <h1>Magic Fridge</h1>
+</header>
+
+<main class="container">
+    <!-- Lista de alimentos -->
+    <section class="left-panel">
+        <h2>Meus Alimentos</h2>
+
+        <!-- Botão adicionar alimento -->
+        <button class="btn add">Adicionar Alimento</button>
+
+        <!-- Scroll container -->
+        <div class="food-container">
+            <table class="food-table">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Quantidade</th>
+                    <th>Validade</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="alimento : ${Alimentos}">
+                    <td th:text="${alimento.nome}">Nome</td>
+                    <td th:text="${alimento.categoria}">Categoria</td>
+                    <td th:text="${alimento.quantidade}">Qtd</td>
+                    <td th:text="${alimento.validade}">Data</td>
+                    <td>
+                        <button class="btn edit">Editar</button>
+                        <button class="btn delete">Excluir</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Receita -->
+        <section class="right-panel">
+            <h2>Receita Gerada</h2>
+
+            <!-- Botão para chamar o controller UI -->
+            <form action="/food/ui/generate" method="get">
+                <button class="btn send" type="submit">Gerar Receita</button>
+            </form>
+
+            <!-- Caixa de texto preenchida pelo Thymeleaf -->
+            <textarea readonly th:text="${receita}"></textarea>
+        </section>
+    </section>
+</main>
+</body>
+</html>
